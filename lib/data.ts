@@ -99,9 +99,9 @@ export const contactInfo = {
 };
 
 export function getMapEmbedUrl(lat: number, lng: number) {
-  return `https://maps.google.com/maps?q=${lat},${lng}&hl=fa&z=16&output=embed`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(RESTAURANT_MAP_URL)}&hl=fa&z=16&output=embed`;
 }
 
 export function getMapDirectionsUrl(lat: number, lng: number) {
-  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&hl=fa`;
+  return RESTAURANT_MAP_URL;
 }
