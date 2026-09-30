@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #fffdf7;
+  --color-charcoal: #111111;
+  --color-orange-brand: #f97316;
+  --font-sans: var(--font-vazirmatn);
+  --font-serif: var(--font-vazirmatn);
+  --font-script: var(--font-gulzar);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html[dir="rtl"] body {
+  text-align: start;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: #1a1a1a;
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+}
+
+.font-script {
+  font-family: var(--font-gulzar), var(--font-great-vibes), cursive;
+  font-weight: 400;
+}
+
+/* Latin brand / decorative English */
+.font-script:lang(en),
+.font-script[lang="en"] {
+  font-family: var(--font-great-vibes), cursive;
+}
+
+/* English script accent under Persian headings — spaced, no overlap */
+.heading-accent-en {
+  display: block;
+  margin-top: 0.35em;
+  line-height: 1.05;
+  font-size: 0.92em;
+}
+
+@media (min-width: 640px) {
+  .heading-accent-en {
+    margin-top: 0.45em;
+    font-size: 0.95em;
+  }
+}
+
+/* Standalone English script labels (Our Menu, About Us, …) */
+.script-label-en {
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 0.25em;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
+}
+
+@keyframes float-y-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-y-slow 7s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-inline-start: -1rem;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding-inline-start: 1rem;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .embla__slide {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 25%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Blog article typography — hand-tuned reading experience, not a generic
+   HTML dump. Line length capped via the container's max-width (see
+   BlogContent), rest handles rhythm/hierarchy/media. */
+.prose-humazd {
+  color: #2a241d;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+
+.prose-humazd > * + * {
+  margin-top: 1.6em;
+}
+
+.prose-humazd p {
+  margin: 0;
+}
+
+.prose-humazd h2 {
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.65rem;
+  line-height: 1.4;
+  color: #1a1410;
+  margin-top: 2.4em;
+}
+
+.prose-humazd h3 {
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: #1a1410;
+  margin-top: 2em;
+}
+
+.prose-humazd > h2:first-child,
+.prose-humazd > h3:first-child {
+  margin-top: 0;
+}
+
+.prose-humazd a {
+  color: #ea6a0e;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(234, 106, 14, 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.prose-humazd a:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose-humazd strong {
+  font-weight: 700;
+  color: #1a1410;
+}
+
+.prose-humazd blockquote {
+  border-inline-start: 3px solid #f97316;
+  padding-inline-start: 1.25em;
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+  font-style: normal;
+  font-size: 1.15em;
+  line-height: 1.7;
+  color: #4a4034;
+}
+
+.prose-humazd ul,
+.prose-humazd ol {
+  padding-inline-start: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.prose-humazd ul {
+  list-style: disc;
+}
+
+.prose-humazd ol {
+  list-style: decimal;
+}
+
+.prose-humazd li::marker {
+  color: #f97316;
+}
+
+.prose-humazd img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.prose-humazd figcaption {
+  font-size: 0.8rem;
+  color: #8a7c68;
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.prose-humazd hr {
+  border: none;
+  border-top: 1px solid #e5ddcc;
+  margin: 2.5em 0;
+}
+
+@media (max-width: 640px) {
+  .prose-humazd {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .prose-humazd h2 {
+    font-size: 1.4rem;
+  }
+
+  .prose-humazd h3 {
+    font-size: 1.15rem;
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="900" height="900" role="img" aria-label="Humazd signature dish placeholder">
+  <defs>
+    <radialGradient id="bg3" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg3)"/>
+  <ellipse cx="450" cy="600" rx="260" ry="30" fill="#000000" opacity="0.35"/>
+  <circle cx="450" cy="420" r="220" fill="none" stroke="#F97316" stroke-width="3" opacity="0.5"/>
+  <path d="M310 470 Q450 560 590 470 L560 340 Q450 280 340 340 Z" fill="#F97316" opacity="0.9"/>
+  <path d="M340 340 Q450 280 560 340 L548 380 Q450 330 352 380 Z" fill="#fbbf7a"/>
+  <text x="450" y="700" text-anchor="middle" font-family="serif" font-size="34" fill="#F97316" letter-spacing="4">HUMAZD</text>
+  <text x="450" y="740" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#8a8a8a" letter-spacing="2">SIGNATURE DISH — IMAGE COMING SOON</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Humazd image placeholder">
+  <defs>
+    <radialGradient id="bgw" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bgw)"/>
+  <g opacity="0.15" stroke="#F97316" stroke-width="2" fill="none">
+    <circle cx="180" cy="160" r="110"/>
+    <circle cx="1040" cy="740" r="150"/>
+  </g>
+  <circle cx="600" cy="400" r="150" fill="none" stroke="#F97316" stroke-width="3" opacity="0.5"/>
+  <path d="M470 450 Q600 540 730 450 L700 330 Q600 270 500 330 Z" fill="#F97316" opacity="0.9"/>
+  <path d="M500 330 Q600 270 700 330 L688 370 Q600 320 512 370 Z" fill="#fbbf7a"/>
+  <text x="600" y="640" text-anchor="middle" font-family="serif" font-size="40" fill="#F97316" letter-spacing="5">HUMAZD</text>
+  <text x="600" y="682" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#8a8a8a" letter-spacing="2">IMAGE COMING SOON</text>
+</svg>

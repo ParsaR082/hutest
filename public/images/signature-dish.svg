@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none" role="img" aria-label="Signature dish placeholder">
+  <!-- Transparent background — replace with public/images/signature-dish.png -->
+  <ellipse cx="320" cy="520" rx="200" ry="28" fill="#000" opacity="0.06"/>
+  <ellipse cx="320" cy="300" rx="220" ry="200" fill="#F97316" opacity="0.08"/>
+  <path d="M140 320c20-90 80-150 180-150s160 60 180 150c-30 80-100 130-180 130S170 400 140 320z" fill="#1a1a1a" opacity="0.85"/>
+  <path d="M180 290c25-55 70-85 140-85s115 30 140 85c-20 50-65 82-140 82s-120-32-140-82z" fill="#F97316" opacity="0.35"/>
+  <path d="M200 270c18-35 55-55 120-55s102 20 120 55" stroke="#F97316" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="250" cy="250" r="8" fill="#F97316" opacity="0.5"/>
+  <circle cx="320" cy="235" r="6" fill="#F97316" opacity="0.4"/>
+  <circle cx="390" cy="255" r="7" fill="#F97316" opacity="0.45"/>
+</svg>
