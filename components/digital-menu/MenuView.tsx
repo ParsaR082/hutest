@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryNav from "@/components/digital-menu/CategoryNav";
 import DishCard from "@/components/digital-menu/DishCard";
 import DishModal from "@/components/digital-menu/DishModal";
