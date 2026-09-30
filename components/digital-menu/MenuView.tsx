@@ -15,6 +15,38 @@ export default function MenuView() {
   const [categories, setCategories] = useState<DigitalDishCategory[]>(fallbackCategories);
   const [selectedDish, setSelectedDish] = useState<DigitalDishItem | null>(null);
 
+  useEffect(() => {
+    let active = true;
+    fetchMenuItems()
+      .then((items) => {
+        if (!active || items.length === 0) return;
+        const grouped: Record<string, DigitalDishCategory> = {};
+        for (const item of items) {
+          const dish: DigitalDishItem = {
+            id: String(item.id),
+            enTitle: item.name,
+            faTitle: item.name,
+            enDesc: item.description,
+            faDesc: item.description,
+            price: item.price_display,
+            image: item.image,
+          };
+          if (!grouped[item.category]) {
+            grouped[item.category] = {
+              id: item.category,
+              enTitle: item.category,
+              faTitle: item.category,
+              items: [],
+            };
+          }
+          grouped[item.category].items.push(dish);
+        }
+        setCategories(Object.values(grouped));
+      })
+      .catch(() => undefined);
+    return () => { active = false; };
+  }, []);
+
   return (
     <MarbleBackground className="text-zinc-200">
       <SideDecorations />
