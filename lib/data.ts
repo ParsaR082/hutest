@@ -85,6 +85,8 @@ export const footerQuickLinks = [
 
 export const openingHours = [{ days: "هر روز", time: "۰۹:۰۰ – ۰۰:۰۰" }];
 
+export const RESTAURANT_MAP_URL = Buffer.from("aHR0cHM6Ly9tYXBzLmFwcC5nb28uZ2wvWHdlZFJpUlZ5RGtkbWdyNzk=", "base64").toString("utf8");
+
 export const contactInfo = {
   phone: "۳۳۲۲۷۶۴۱ / ۳۳۲۲۷۶۴۰",
   email: "Humazdrestaurant@gmail.com",
