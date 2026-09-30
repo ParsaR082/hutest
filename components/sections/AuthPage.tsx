@@ -90,6 +90,7 @@ function AuthPageInner() {
   const [otpCode, setOtpCode] = useState("");
   const [otpStep, setOtpStep] = useState<"phone" | "code">("phone");
   const [otpCooldown, setOtpCooldown] = useState(0);
+  const [debugOtp, setDebugOtp] = useState<string | null>(null);
   const cooldownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -117,7 +118,8 @@ function AuthPageInner() {
 
     setLoading(true);
     try {
-      await requestOtp(otpPhone);
+      const response = await requestOtp(otpPhone);
+      setDebugOtp(response.debug_code ?? null);
       setOtpStep("code");
       setOtpCooldown(60);
       if (cooldownTimerRef.current) clearInterval(cooldownTimerRef.current);
@@ -208,6 +210,11 @@ function AuthPageInner() {
 
                 {otpStep === "code" && (
                   <>
+                    {debugOtp && (
+                      <p className="rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-center text-xs text-yellow-300">
+                        کد آزمایشی محیط توسعه: {debugOtp}
+                      </p>
+                    )}
                     <input
                       id="otp-code"
                       type="text"
