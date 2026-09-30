@@ -92,7 +92,7 @@ export const contactInfo = {
   email: "Humazdrestaurant@gmail.com",
   address: "ارومیه، خیابان امام رضا ۱",
   coordinates: {
-    // Approximate Urmia city center; replace with the exact restaurant pin when available.
+    // Kept for backwards compatibility with settings consumers; map links use the exact restaurant pin above.
     lat: 37.5527,
     lng: 45.0761,
   },
