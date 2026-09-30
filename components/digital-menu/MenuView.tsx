@@ -12,6 +12,7 @@ import type { MenuItemList } from "@/lib/api/types";
 import type { DigitalDishCategory, DigitalDishItem } from "@/types/digitalMenu";
 
 export default function MenuView() {
+  const [categories, setCategories] = useState<DigitalDishCategory[]>(fallbackCategories);
   const [selectedDish, setSelectedDish] = useState<DigitalDishItem | null>(null);
 
   return (
