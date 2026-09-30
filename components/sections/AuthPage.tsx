@@ -119,7 +119,7 @@ function AuthPageInner() {
     setLoading(true);
     try {
       const response = await requestOtp(otpPhone);
-      setDebugOtp(response.debug_code ?? null);
+      setDebugOtp((response as { debug_code?: string }).debug_code ?? null);
       setOtpStep("code");
       setOtpCooldown(60);
       if (cooldownTimerRef.current) clearInterval(cooldownTimerRef.current);
