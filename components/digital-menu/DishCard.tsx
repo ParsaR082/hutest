@@ -1,6 +1,6 @@
 "use client";
 
-import { DISH_IMAGE_URL, PLATE_CLASSES } from "@/lib/digitalMenuConstants";
+import { PLATE_CLASSES } from "@/lib/digitalMenuConstants";
 import type { DigitalDishItem } from "@/types/digitalMenu";
 
 interface DishCardProps {
@@ -27,8 +27,8 @@ export default function DishCard({ item, onSelect }: DishCardProps) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={DISH_IMAGE_URL}
-          alt={item.enTitle}
+          src={item.image}
+          alt={item.enTitle || item.faTitle}
           className={PLATE_CLASSES}
         />
 
