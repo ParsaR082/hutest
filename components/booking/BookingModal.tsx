@@ -201,16 +201,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           <span className="mb-2 block text-sm font-medium text-gray-900">
                             تاریخ
                           </span>
-                          <div className="relative">
-                            <Calendar className="pointer-events-none absolute start-0 top-1/2 h-4 w-4 -translate-y-1/2 text-[#F97316]" />
-                            <input
-                              type="date"
-                              required
-                              value={date}
-                              onChange={(e) => setDate(e.target.value)}
-                              className="w-full border-b border-gray-300 bg-transparent py-3 ps-7 outline-none transition-colors focus:border-[#F97316]"
-                            />
-                          </div>
+                          <JalaliDatePicker value={date} onChange={setDate} />
                         </label>
                         <label className="block">
                           <span className="mb-2 block text-sm font-medium text-gray-900">
