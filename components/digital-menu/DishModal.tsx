@@ -1,6 +1,6 @@
 "use client";
 
-import { DISH_IMAGE_URL, PLATE_CLASSES_LG } from "@/lib/digitalMenuConstants";
+import { PLATE_CLASSES_LG } from "@/lib/digitalMenuConstants";
 import type { DigitalDishItem } from "@/types/digitalMenu";
 
 const parsePrice = (priceRaw: string | number): number => {
@@ -43,8 +43,8 @@ export default function DishModal({ dish, onClose }: DishModalProps) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={DISH_IMAGE_URL}
-          alt={dish.enTitle}
+          src={dish.image}
+          alt={dish.enTitle || dish.faTitle}
           className={`${PLATE_CLASSES_LG} mb-6`}
         />
 
