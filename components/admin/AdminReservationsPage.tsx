@@ -18,12 +18,18 @@ function formatDate(date: string) {
 export function AdminReservationsPage() {
   const [items, setItems] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const token = getAccessToken();
-    if (!token) return;
+    if (!token) {
+      setError("برای مشاهده رزروها ابتدا وارد حساب مدیر شوید.");
+      setLoading(false);
+      return;
+    }
     fetchAdminReservations(token)
       .then(setItems)
+      .catch((err) => setError(err instanceof Error ? err.message : "خطا در بارگذاری رزروها."))
       .finally(() => setLoading(false));
   }, []);
 
@@ -31,10 +37,12 @@ export function AdminReservationsPage() {
     <div className="px-4 py-8 sm:px-8 lg:px-10">
       <AdminPageHeader eyebrow="Reservations" title="مدیریت رزروها" />
 
+      {error && <div className="mt-6 rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-sm text-red-300" role="alert">{error}</div>}
+
       {loading ? (
         <p className="text-sm text-gray-500">در حال بارگذاری...</p>
       ) : items.length === 0 ? (
-        <p className="text-sm text-gray-500">رزروی ثبت نشده</p>
+        <p className="text-sm text-gray-500">{error ? "رزروها قابل دریافت نیستند." : "رزروی ثبت نشده است."}</p>
       ) : (
         <div className="overflow-x-auto rounded-2xl border border-gray-800">
           <table className="min-w-full text-sm">
