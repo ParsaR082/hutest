@@ -13,6 +13,8 @@ import {
 import { AnimatedButton } from "@/components/ui/AnimatedButton";
 import { LocalImage } from "@/components/ui/LocalImage";
 import { ScrollTextReveal } from "@/components/scroll/ScrollTextReveal";
+import { addCartItem } from "@/lib/api/cart";
+import { getAccessToken } from "@/lib/auth/storage";
 import {
   MENU_FILTER_TABS,
   filterTimelineItems,
@@ -108,6 +110,26 @@ function MenuItem({
   const ref = useRef<HTMLElement>(null);
   const plateRight = index % 2 === 0;
   const dishHref = `/menu/${item.slug}`;
+  const [adding, setAdding] = useState(false);
+  const [added, setAdded] = useState(false);
+
+  const handleAddToOrder = async () => {
+    const token = getAccessToken();
+    if (!token) {
+      window.location.href = `/auth?next=${encodeURIComponent(dishHref)}`;
+      return;
+    }
+    const menuItemId = Number(item.id);
+    if (!Number.isInteger(menuItemId)) return;
+    setAdding(true);
+    try {
+      await addCartItem(token, { menu_item_id: menuItemId, quantity: 1 });
+      setAdded(true);
+      window.setTimeout(() => setAdded(false), 1800);
+    } finally {
+      setAdding(false);
+    }
+  };
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -164,10 +186,11 @@ function MenuItem({
 
         <div className="mt-8 max-md:flex max-md:justify-center">
           <AnimatedButton
-            href={dishHref}
+            type="button"
+            onClick={() => void handleAddToOrder()}
             className="inline-flex w-full max-w-sm px-10 py-4 text-xs sm:text-sm md:w-auto"
           >
-            افزودن به سفارش
+            {adding ? "در حال افزودن..." : added ? "به سفارش اضافه شد" : "افزودن به سفارش"}
           </AnimatedButton>
         </div>
       </div>
