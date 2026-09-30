@@ -3,6 +3,7 @@
 // Persian calendar support
 
 import { useEffect, useState } from "react";
+import { JalaliDatePicker } from "@/components/booking/JalaliDatePicker";
 import { AnimatePresence, motion } from "framer-motion";
 import { Calendar, Check, Clock, Phone, User, X } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/AnimatedButton";
