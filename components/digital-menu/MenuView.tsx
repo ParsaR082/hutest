@@ -6,8 +6,10 @@ import DishCard from "@/components/digital-menu/DishCard";
 import DishModal from "@/components/digital-menu/DishModal";
 import MarbleBackground from "@/components/digital-menu/MarbleBackground";
 import SideDecorations from "@/components/digital-menu/SideDecorations";
-import { digitalMenuCategories } from "@/lib/digitalMenuData";
-import type { DigitalDishItem } from "@/types/digitalMenu";
+import { digitalMenuCategories as fallbackCategories } from "@/lib/digitalMenuData";
+import { fetchMenuItems } from "@/lib/api/menu";
+import type { MenuItemList } from "@/lib/api/types";
+import type { DigitalDishCategory, DigitalDishItem } from "@/types/digitalMenu";
 
 export default function MenuView() {
   const [selectedDish, setSelectedDish] = useState<DigitalDishItem | null>(null);
