@@ -49,7 +49,10 @@ class RequestOTPView(APIView):
         except SMSDeliveryError:
             otp.delete()
             return APIResponse.error("SMS_FAILED", "ارسال پیامک ناموفق بود. لطفاً دوباره تلاش کنید.", status=502)
-        return APIResponse.success({"phone": phone, "expires_in": OTPCode.OTP_TTL_SECONDS})
+        payload = {"phone": phone, "expires_in": OTPCode.OTP_TTL_SECONDS}
+        if getattr(settings, "DEBUG", False) and getattr(settings, "SMS_BACKEND", "console") == "console":
+            payload["debug_code"] = otp.code
+        return APIResponse.success(payload)
 
 
 class VerifyOTPView(APIView):
