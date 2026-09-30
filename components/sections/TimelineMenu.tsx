@@ -112,6 +112,7 @@ function MenuItem({
   const dishHref = `/menu/${item.slug}`;
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
+  const [addError, setAddError] = useState(false);
 
   const handleAddToOrder = async () => {
     const token = getAccessToken();
@@ -122,10 +123,14 @@ function MenuItem({
     const menuItemId = Number(item.id);
     if (!Number.isInteger(menuItemId)) return;
     setAdding(true);
+    setAddError(false);
     try {
       await addCartItem(token, { menu_item_id: menuItemId, quantity: 1 });
       setAdded(true);
       window.setTimeout(() => setAdded(false), 1800);
+    } catch {
+      setAddError(true);
+      window.setTimeout(() => setAddError(false), 2500);
     } finally {
       setAdding(false);
     }
@@ -192,6 +197,7 @@ function MenuItem({
           >
             {adding ? "در حال افزودن..." : added ? "به سفارش اضافه شد" : "افزودن به سفارش"}
           </AnimatedButton>
+          {addError && <p className="mt-2 text-xs text-red-400">افزودن به سفارش انجام نشد. دوباره تلاش کنید.</p>}
         </div>
       </div>
 
