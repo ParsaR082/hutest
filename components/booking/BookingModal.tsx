@@ -7,6 +7,7 @@ import { AnimatedButton } from "@/components/ui/AnimatedButton";
 import { LocalImage } from "@/components/ui/LocalImage";
 import { images } from "@/lib/images";
 import { useSiteImages } from "@/lib/hooks/useSiteImages";
+import { JalaliDatePicker } from "./JalaliDatePicker";
 
 const PARTY_SIZES = ["1", "2", "3", "4", "5+"] as const;
 
@@ -200,12 +201,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           </span>
                           <div className="relative">
                             <Calendar className="pointer-events-none absolute start-0 top-1/2 h-4 w-4 -translate-y-1/2 text-[#F97316]" />
-                            <input
-                              type="date"
-                              required
+                            <JalaliDatePicker
                               value={date}
-                              onChange={(e) => setDate(e.target.value)}
-                              className="w-full border-b border-gray-300 bg-transparent py-3 ps-7 outline-none transition-colors focus:border-[#F97316]"
+                              onChange={setDate}
+                              required
                             />
                           </div>
                         </label>

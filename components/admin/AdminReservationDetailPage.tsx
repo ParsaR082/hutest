@@ -20,6 +20,14 @@ const STATUS_ACTIONS = [
   { status: "no_show", label: "عدم حضور" },
 ] as const;
 
+function formatDate(date: string) {
+  try {
+    return new Date(date).toLocaleDateString("fa-IR");
+  } catch {
+    return date;
+  }
+}
+
 export function AdminReservationDetailPage({
   params,
 }: {
@@ -53,7 +61,9 @@ export function AdminReservationDetailPage({
     if (!token) return;
     setUpdating(status);
     try {
-      const updated = await updateAdminReservation(token, reservationId, { status });
+      const updated = await updateAdminReservation(token, reservationId, {
+        status,
+      });
       setReservation(updated);
     } finally {
       setUpdating(null);
@@ -83,7 +93,11 @@ export function AdminReservationDetailPage({
   }
 
   if (!reservation) {
-    return <div className="px-8 py-12 text-center text-gray-500">رزرو یافت نشد</div>;
+    return (
+      <div className="px-8 py-12 text-center text-gray-500">
+        رزرو یافت نشد
+      </div>
+    );
   }
 
   return (
@@ -99,7 +113,9 @@ export function AdminReservationDetailPage({
         <h1 className="font-serif text-3xl font-bold text-white">
           {reservation.reservation_code}
         </h1>
-        <p className="mt-2 text-sm text-gray-400">{reservation.status_label}</p>
+        <p className="mt-2 text-sm text-gray-400">
+          {reservation.status_label}
+        </p>
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -107,29 +123,37 @@ export function AdminReservationDetailPage({
           <h2 className="text-sm font-medium uppercase tracking-widest text-gray-500">
             اطلاعات مهمان
           </h2>
+
           <dl className="mt-4 space-y-2 text-sm">
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">نام</dt>
               <dd className="text-white">{reservation.guest_name}</dd>
             </div>
+
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">تلفن</dt>
               <dd className="text-white">{reservation.guest_phone}</dd>
             </div>
+
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">تاریخ</dt>
               <dd className="text-white">
-                {reservation.date} · {reservation.time.slice(0, 5)}
+                {formatDate(reservation.date)} ·{" "}
+                {reservation.time.slice(0, 5)}
               </dd>
             </div>
+
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">تعداد</dt>
               <dd className="text-white">{reservation.party_size} نفر</dd>
             </div>
+
             {reservation.special_requests && (
               <div>
                 <dt className="text-gray-500">درخواست ویژه</dt>
-                <dd className="mt-1 text-gray-300">{reservation.special_requests}</dd>
+                <dd className="mt-1 text-gray-300">
+                  {reservation.special_requests}
+                </dd>
               </div>
             )}
           </dl>
@@ -139,6 +163,7 @@ export function AdminReservationDetailPage({
           <h2 className="text-sm font-medium uppercase tracking-widest text-gray-500">
             تخصیص میز
           </h2>
+
           <div className="mt-4 flex gap-3">
             <select
               value={tableId}
@@ -146,12 +171,14 @@ export function AdminReservationDetailPage({
               className="flex-1 rounded-xl border border-gray-700 bg-[#0a0a0a] px-4 py-2.5 text-sm text-white outline-none focus:border-[#F97316]/50"
             >
               <option value="">انتخاب میز</option>
+
               {tables.map((t) => (
                 <option key={t.id} value={t.id}>
                   {t.label} ({t.capacity} نفر)
                 </option>
               ))}
             </select>
+
             <AnimatedButton
               className="px-5 py-2.5 text-[0.65rem]"
               disabled={!tableId || updating === "table"}
@@ -160,6 +187,7 @@ export function AdminReservationDetailPage({
               {updating === "table" ? "..." : "ثبت"}
             </AnimatedButton>
           </div>
+
           <p className="mt-2 text-xs text-gray-600">
             میز فعلی: {reservation.table_label ?? "تخصیص نشده"}
           </p>
@@ -170,12 +198,15 @@ export function AdminReservationDetailPage({
         <h2 className="mb-4 text-sm font-medium uppercase tracking-widest text-gray-500">
           تغییر وضعیت
         </h2>
+
         <div className="flex flex-wrap gap-3">
           {STATUS_ACTIONS.map((action) => (
             <AnimatedButton
               key={action.status}
               className="px-5 py-2.5 text-[0.65rem]"
-              disabled={updating != null || reservation.status === action.status}
+              disabled={
+                updating != null || reservation.status === action.status
+              }
               onClick={() => void handleStatus(action.status)}
             >
               {updating === action.status ? "..." : action.label}
@@ -186,3 +217,4 @@ export function AdminReservationDetailPage({
     </div>
   );
 }
+
